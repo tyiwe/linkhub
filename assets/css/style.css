@@ -12,6 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center; /* alteração pra ficar ao meio (vertical), podendo dar erro com muitos links*/
   padding: 40px 16px;
 }
 
@@ -21,8 +22,8 @@ header {
 }
 
 #foto-perfil {
-  width: 80px;
-  height: 80px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
   object-fit: cover;
   margin-bottom: 12px;
