@@ -30,7 +30,6 @@
 - [ ] Adicionar tema claro/escuro
 - [ ] Adicionar backend em Python (Flask/FastAPI) para servir os links via API
 - [ ] Adicionar banco de dados
-- [ ] Painel administrativo para adicionar/editar links sem mexer no código
 
 ## Site no ar
 
