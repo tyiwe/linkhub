@@ -1,4 +1,5 @@
 [
-  { "nome": "GitHub", "url": "https://github.com/tyiwe" },
-  { "nome": "LinkedIn", "url": "https://www.linkedin.com/in/tyiwe/" }
+  { "nome": "GitHub", "url": "https://github.com/tyiwe", "rede": "github" },
+  { "nome": "LinkedIn", "url": "https://www.linkedin.com/in/tyiwe/", "rede": "linkedin" },
+  { "nome": "Instagram", "url": "https://www.instagram.com/gl.souzax", "rede": "instagram" }
 ]
