@@ -73,3 +73,10 @@ footer {
   color: #666666;
   font-size: 12px;
 }
+
+#mensagem-erro {
+  text-align: center;
+  color: #ff6b6b;
+  font-size: 14px;
+  margin-top: 12px;
+}
