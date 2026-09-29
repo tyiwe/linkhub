@@ -1,55 +1,43 @@
+# LinkHub
+
+Página pessoal de links (estilo link na bio) feita com HTML, CSS e JavaScript.
 
 ## Funcionalidades
 
 - Exibição dinâmica dos links (lidos de um arquivo JSON via JavaScript, não fixos no HTML)
+- Esconde o link da rede de onde a pessoa veio (ex: quem chega pelo Instagram não vê o botão do Instagram)
+- Links curtos para cada rede, com redirecionamento
+- Mensagem de erro na tela se os links não carregarem
 - Layout centralizado e responsivo (Flexbox)
 - Efeito hover nos botões
+
+## Como funciona a detecção de origem
+
+A função `descobrirOrigem()` tenta três jeitos, nesta ordem:
+
+1. **Parâmetro na URL:** `?origem=github`. É o mais confiável, porque eu mesmo escolho o valor.
+2. **userAgent:** o navegador interno de alguns apps (como o Instagram) se identifica com o nome do app.
+3. **referrer:** o site de onde a pessoa clicou. Nem sempre é enviado pelo navegador, por isso é o último recurso.
+
+Se nenhum funcionar, todos os links aparecem. Cada link do `links.json` tem um campo `rede`, e o filtro esconde o que for igual à origem.
+
+## Links curtos
+
+O repositório [tyiwe.github.io](https://github.com/tyiwe/tyiwe.github.io) guarda páginas de redirecionamento que levam para o LinkHub já com a origem:
+
+- `tyiwe.github.io/ig/` → origem instagram
+- `tyiwe.github.io/gh/` → origem github
+- `tyiwe.github.io/in/` → origem linkedin
+- `tyiwe.github.io/` → todos os links
 
 ## Decisões técnicas
 
 - Os links não ficam escritos direto no HTML. O JavaScript busca esses dados em
-  `assets/data/links.json` e monta os botões dinamicamente. Isso deixa o projeto
-  preparado para, futuramente, trocar esse arquivo por uma API (ex: Python/Flask)
-  sem precisar reescrever a lógica de exibição.
-- Centralização da página feita com Flexbox (`display: flex`, `flex-direction: column`,
-  `align-items: center`, `justify-content: center`), em vez de margens fixas.
+`assets/data/links.json` e monta os botões dinamicamente. Isso deixa o projeto
+preparado para, futuramente, trocar esse arquivo por uma API (ex: Python/Flask)
+sem precisar reescrever a lógica de exibição.
+- Centralização da página feita com Flexbox, em vez de margens fixas.
 - `width: 100%` combinado com `max-width: 320px` no `main` para funcionar bem
-  tanto em celular quanto em telas grandes, sem media queries.
-
-## Desafios técnicos
-
-- **CORS ao testar localmente:** abrir o `index.html` direto com duplo clique
-  (`file://`) faz o `fetch()` falhar, porque o navegador bloqueia essa leitura
-  de arquivo local por segurança. Resolvido usando a extensão Live Server do VS Code.
-- **Centralização vertical:** inicialmente a página só centralizava na horizontal.
-  Foi preciso entender a diferença entre `align-items` (eixo transversal) e
-  `justify-content` (eixo principal) no Flexbox para centralizar nos dois eixos.
-
-## Próximos passos
-
-- [ ] Adicionar tema claro/escuro
-- [ ] Adicionar backend em Python (Flask/FastAPI) para servir os links via API
-- [ ] Adicionar banco de dados
-
-## Site no ar
-
-[Acesse aqui](https://tyiwe.github.io/linkhub/)
-
-## Como visualizar localmente
-
-Abra o projeto com a extensão **Live Server** no VS Code, ou rode:
-
-```bash
-python -m http.server
-```
-
-Depois acesse `http://localhost:8000` no navegador.
-
-## Uso de Inteligência Artificial
-
-Durante o desenvolvimento deste projeto, utilizei a IA (Claude) como apoio ao
-aprendizado, já que ainda estou iniciando os estudos em desenvolvimento web. A
-IA foi consultada para tirar dúvidas sobre HTML semântico, Flexbox, JavaScript
-(Fetch API) e boas práticas de organização de projeto e uso de Git/GitHub
-(commits, tags de versão). As decisões finais de estrutura, conteúdo e todo o
-código foram revisadas e compreendidas por mim.
+tanto em celular quanto em telas grandes, sem media queries.
+- O `fetch` não considera erro uma resposta 404, então o código verifica
+`resposta.ok`
