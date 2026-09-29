@@ -41,3 +41,6 @@ sem precisar reescrever a lógica de exibição.
 tanto em celular quanto em telas grandes, sem media queries.
 - O `fetch` não considera erro uma resposta 404, então o código verifica
 `resposta.ok`
+- **App do GitHub abre o Safari sem referrer:** ao clicar no link pelo app do GitHub, o
+navegador abre sem informar de onde veio, então o `referrer` não serve. Resolvi
+usando um link curto (`/gh/`) que redireciona já com `?origem=github`.
